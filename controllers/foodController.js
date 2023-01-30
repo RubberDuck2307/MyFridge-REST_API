@@ -26,7 +26,7 @@ exports.changeFood = async (req, res) => {
     try {
         let foodData = req.body.food
         for (let i = 0; i < foodData.length; i++) {
-            await food.updateFood(foodData[i], req.params.id)
+            await food.updateFood(JSON.parse(foodData[i]), req.params.id)
         }
         res.status(200).json({success: true})
     } catch (error) {
@@ -82,6 +82,3 @@ exports.removeFavouriteRecipe = async (req, res) => {
     }
 }
 
-exports.test = (req, res) => {
-    res.json({message: "GG"})
-}
