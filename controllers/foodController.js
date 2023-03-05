@@ -12,6 +12,7 @@ exports.getAllByUserID = async (req, res) => {
 exports.insertAll = async (req, res) => {
     try {
         for (let i = 0; i < req.body.food.length; i++) {
+            console.log(req.body.food[i])
             await food.addFood(JSON.parse(req.body.food[i]), req.params.id)
         }
         res.status(200).json({success: true})
@@ -25,8 +26,9 @@ exports.insertAll = async (req, res) => {
 exports.changeFood = async (req, res) => {
     try {
         let foodData = req.body.food
+        console.log(foodData)
         for (let i = 0; i < foodData.length; i++) {
-            await food.updateFood(JSON.parse(foodData[i]), req.params.id)
+            await food.updateFood(foodData[i], req.params.id)
         }
         res.status(200).json({success: true})
     } catch (error) {
